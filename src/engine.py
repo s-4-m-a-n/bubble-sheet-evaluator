@@ -361,8 +361,7 @@ def extract_bubbles_center(contours, lower_bound, upper_bound):
     return bubbles_contour, bubbles_center, bubbles_parimeter
 
 
-
-def pipeline(image):
+def pipeline(image, ebpg=4):
     binary_image = preprocessing(image.copy())
     contours = cv.findContours(binary_image, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
     ctrs = imutils.grab_contours(contours)
@@ -388,7 +387,6 @@ def pipeline(image):
 #     plt.show()
 #     return
     
-    ebpg=4
     groups_y , min_max_bubble_center = groupby_axis_y(bubbles_center, tolerance=6)
     #-----------------------------------------------
     min_x = min_max_bubble_center[0][0]
